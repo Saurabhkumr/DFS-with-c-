@@ -95,6 +95,7 @@ int main(int argc, char const *argv[])
     }
         arr[pos-1]=add;
 
+
     printf("Array after adding an element : ");
      for (i=0; i < size - 1; i++)
     {
