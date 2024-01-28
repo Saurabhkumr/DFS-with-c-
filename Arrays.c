@@ -102,11 +102,8 @@ int main(int argc, char const *argv[])
         printf("%d,", arr[i]);
     }
     printf("%d\n", arr[i]);
-    
 
-
-
-    
+    printf("program exit.....");
 
     return 0;
 }
