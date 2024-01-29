@@ -1,5 +1,27 @@
 #include <stdio.h>
 
+int binary_search(int arr[],int target,int size){
+   int start = 0;
+   int mid;
+   int end = size;
+   while(start<=end){
+    mid=(start+end)/2;
+
+    if(arr[mid]==target){
+        return mid;
+    }
+    else if(arr[mid]>target){
+        end=mid-1;
+    }
+    else if(arr[mid]<target){
+        start = mid+1;
+    }
+
+   }
+    return -1;
+}
+
+
 int main(int argc, char const *argv[])
 {
     int size;
@@ -27,8 +49,8 @@ int main(int argc, char const *argv[])
 
         printf("\n");
         printf("1. Traverse the array...\n");
-        printf("2. Delete an element from the array...\n");
-        printf("3. Add an element the array...\n");
+        printf("2. Add an element the array...\n");
+        printf("3. Delete an element from the array...\n");
         printf("4. Search any element using Linear Search...\n");
         printf("5. Search any element using Binary Search...\n");
         printf("\nChoose the above option to perform any operation : ");
@@ -134,8 +156,8 @@ int main(int argc, char const *argv[])
 
           printf("Enter the element you want to search : ");
           scanf("%d",&num);
-          bubble_sort(num,0,size);
-          printf("Entered element is at index : %d\n", binary_search(arr,num));
+        //   bubble_sort(num,0,size);
+          printf("Entered element is at index : %d\n",binary_search(arr,num,size));
         default:
             printf("Wrong choice ! (Choose from above) \n");
         }
@@ -150,23 +172,3 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-int binary_search(int arr[],int target){
-   int start = 0;
-   int mid;
-   int end = sizeof(arr);
-   while(start<=end){
-    mid=start+(end-start)/2;
-
-    if(arr[mid]==target){
-        return mid;
-    }
-    else if(arr[mid]>target){
-        end=mid-1;
-    }
-    else if(arr[mid]<target){
-        start = mid+1;
-    }
-    return -1;
-
-   }
-}
