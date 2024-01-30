@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// Binary Search using iteration
+
 int binary_search(int arr[], int target, int size)
 {
     int start = 0;
@@ -25,13 +27,70 @@ int binary_search(int arr[], int target, int size)
     return -1;
 }
 
+// Binary Search using recursion
+
+int binary_search_recursion(int arr[], int target, int start, int end)
+{
+    int mid = start + (end - start) / 2;
+
+    if (arr[mid] == target)
+    {
+        return mid;
+    }
+    else if (arr[mid] > target)
+    {
+        binary_search_recursion(arr, target, start, mid - 1);
+    }
+    else if (arr[mid] < target)
+    {
+        binary_search_recursion(arr, target, mid + 1, end);
+    }
+}
+
+// Bubble sort
+
+void bubble_sort(int arr[], int size)
+{
+
+    while (size > 1)
+    {
+        for (int i = 0; i < size - 1; i++)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+        size--;
+    }
+}
+
+// Insertion sort
+
+void insertion_sort(int arr[],int size){
+    int i,j,temp;
+for(i = 1; i<size ;i++){
+    temp=arr[i];
+    j=i-1;
+    while(j>=0 && arr[j]>temp){
+        arr[j+1]=arr[j];
+        j--;
+    }
+    arr[j+1]=temp;
+}
+    
+
+}
+
 int main(int argc, char const *argv[])
 {
     int size;
     int i;
     int flag = 0;
     int pos;
-    int num;
+    int target;
     int add;
     int choice;
     char continueChoice;
@@ -55,7 +114,11 @@ int main(int argc, char const *argv[])
         printf("2. Add an element the array...\n");
         printf("3. Delete an element from the array...\n");
         printf("4. Search any element using Linear Search...\n");
-        printf("5. Search any element using Binary Search...\n");
+        printf("5. Bubble Sort...\n");
+        printf("6. Insertion Sort...\n");
+        printf("7. Search any element using Binary Search (Iterative method)...\n");
+        printf("8. Search any element using Binary Search (Recursion method)...\n");
+
         printf("\nChoose the above option to perform any operation : ");
         scanf("%d", &choice);
 
@@ -135,11 +198,11 @@ int main(int argc, char const *argv[])
             // Linear Search
 
             printf("Enter the element you want to search : ");
-            scanf("%d", &num);
+            scanf("%d", &target);
             for (i = 0; i < size; i++)
             {
 
-                if (num == arr[i])
+                if (target == arr[i])
                 {
                     printf("Entered element is at index : %d\n", i);
                     flag = 1;
@@ -156,10 +219,47 @@ int main(int argc, char const *argv[])
 
         case 5:
 
+            // Bubble sort
+
+            bubble_sort(arr, size);
+
+            printf("Array after sorting : ");
+            for (i = 0; i < size - 1; i++)
+            {
+                printf("%d,", arr[i]);
+            }
+            printf("%d\n", arr[i]);
+            break;
+        case 6:
+
+            // insertion sort
+
+            insertion_sort(arr, size);
+
+            printf("Array after sorting : ");
+            for (i = 0; i < size - 1; i++)
+            {
+                printf("%d,", arr[i]);
+            }
+            printf("%d\n", arr[i]);
+            break;
+
+        case 7:
+            // Binary search using iteration
+
             printf("Enter the element you want to search : ");
-            scanf("%d", &num);
-            //   bubble_sort(num,0,size);
-            printf("Entered element is at index : %d\n", binary_search(arr, num, size));
+            scanf("%d", &target);
+            bubble_sort(arr, size);
+            printf("Entered element is at index : %d\n", binary_search(arr, target, size));
+            break;
+
+        case 8:
+            // Binary search using recursion
+
+            printf("Enter the element you want to search : ");
+            scanf("%d", &target);
+            bubble_sort(arr, size);
+            printf("Entered element is at index : %d\n", binary_search_recursion(arr, target, 0, size));
             break;
 
         default:
