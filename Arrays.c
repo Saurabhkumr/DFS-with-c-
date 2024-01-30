@@ -69,26 +69,28 @@ void bubble_sort(int arr[], int size)
 
 // Insertion sort
 
-void insertion_sort(int arr[],int size){
-    int i,j,temp;
-for(i = 1; i<size ;i++){
-    temp=arr[i];
-    j=i-1;
-    while(j>=0 && arr[j]>temp){
-        arr[j+1]=arr[j];
-        j--;
+void insertion_sort(int arr[], int size)
+{
+    int i, j, temp;
+    for (i = 1; i < size; i++)
+    {
+        temp = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > temp)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
     }
-    arr[j+1]=temp;
-}
-    
-
 }
 
 int main(int argc, char const *argv[])
 {
     int size;
+    int len;
     int i;
-    int flag = 0;
+    int count=0;
     int pos;
     int target;
     int add;
@@ -167,25 +169,26 @@ int main(int argc, char const *argv[])
 
             // Deleting an element from array using index
 
+            len = size;
             printf("Enter the position of an element you want to delete : ");
             scanf("%d", &pos);
 
-            if (pos > size)
+            if (pos > len)
             {
                 printf("Index out of bound \n");
             }
             else
             {
 
-                for (i = pos - 1; i < size - 1; i++)
+                for (i = pos - 1; i < len - 1; i++)
                 {
                     arr[i] = arr[i + 1];
                 }
 
-                size--;
+                len--;
                 printf("Array after deleting the element : ");
 
-                for (i = 0; i < size - 1; i++)
+                for (i = 0; i < len - 1; i++)
                 {
                     printf("%d,", arr[i]);
                 }
@@ -205,15 +208,17 @@ int main(int argc, char const *argv[])
                 if (target == arr[i])
                 {
                     printf("Entered element is at index : %d\n", i);
-                    flag = 1;
-                    break;
+                    count++;
+                    
                 }
             }
 
-            if (flag == 0)
+            if (count == 0)
             {
                 printf("Entered element is not present is array....\n");
             }
+            else
+            printf("%d occurs is present %d times.\n",target,count);
 
             break;
 
@@ -230,6 +235,7 @@ int main(int argc, char const *argv[])
             }
             printf("%d\n", arr[i]);
             break;
+
         case 6:
 
             // insertion sort
