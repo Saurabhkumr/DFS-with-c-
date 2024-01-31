@@ -90,10 +90,15 @@ int main(int argc, char const *argv[])
     int size;
     int len;
     int i;
-    int count=0;
-    int pos;
-    int target;
     int add;
+    int pos;
+    int largest;
+    int Second;
+
+    int count = 0;
+
+    int target;
+
     int choice;
     char continueChoice;
 
@@ -120,6 +125,7 @@ int main(int argc, char const *argv[])
         printf("6. Insertion Sort...\n");
         printf("7. Search any element using Binary Search (Iterative method)...\n");
         printf("8. Search any element using Binary Search (Recursion method)...\n");
+        printf("9. Get the second largest element...\n");
 
         printf("\nChoose the above option to perform any operation : ");
         scanf("%d", &choice);
@@ -129,7 +135,6 @@ int main(int argc, char const *argv[])
         case 1:
 
             // Traversing the array
-
             printf("Array : ");
 
             for (i = 0; i < size - 1; i++)
@@ -141,9 +146,6 @@ int main(int argc, char const *argv[])
             break;
 
         case 2:
-
-            // Add an element
-
             printf("Enter the element you want to add : ");
             scanf("%d", &add);
             printf("Enter the position : ");
@@ -162,7 +164,6 @@ int main(int argc, char const *argv[])
                 printf("%d,", arr[i]);
             }
             printf("%d\n", arr[i]);
-
             break;
 
         case 3:
@@ -209,7 +210,6 @@ int main(int argc, char const *argv[])
                 {
                     printf("Entered element is at index : %d\n", i);
                     count++;
-                    
                 }
             }
 
@@ -218,7 +218,7 @@ int main(int argc, char const *argv[])
                 printf("Entered element is not present is array....\n");
             }
             else
-            printf("%d occurs is present %d times.\n",target,count);
+                printf("%d occurs is present %d times.\n", target, count);
 
             break;
 
@@ -266,6 +266,30 @@ int main(int argc, char const *argv[])
             scanf("%d", &target);
             bubble_sort(arr, size);
             printf("Entered element is at index : %d\n", binary_search_recursion(arr, target, 0, size));
+            break;
+
+        case 9:
+
+            // Find Second
+
+            largest = 0;
+            Second = 0;
+
+            for (i = 1; i < size; i++)
+            {
+                if (arr[i] > arr[largest])
+                {
+                    largest = i;
+                }
+            }
+            for (i = 1; i < size; i++)
+            {
+                if (i != largest && arr[i] > arr[Second])
+                {
+                    Second = i;
+                }
+            }
+            printf("Second largest element : %d\n", arr[Second]);
             break;
 
         default:
