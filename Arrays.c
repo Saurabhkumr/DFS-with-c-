@@ -85,33 +85,37 @@ void insertion_sort(int arr[], int size)
     }
 }
 
+// Traversal of Array
+
+void traverse(int arr[], int size)
+{
+
+    int i;
+
+    for (i = 0; i < size - 1; i++)
+    {
+        printf("%d,", arr[i]);
+    }
+    printf("%d\n", arr[i]);
+}
+
 int main(int argc, char const *argv[])
 {
     int size;
     int len;
-    int i;
+    int i, j, k;
     int add;
     int pos;
     int largest;
     int Second;
-
-    int count = 0;
-
+    int count;
     int target;
-
     int choice;
     char continueChoice;
-
-    printf("Enter the size of an array : ");
-    scanf("%d", &size);
-    int arr[size];
-
-    printf("Enter the elements : ");
-
-    for (int i = 0; i < size - 1; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
+    int arr[10];
+    int rows, columns;
+    int array[10][10];
+    int compactMatrix[10][10];
 
     do
     {
@@ -126,29 +130,33 @@ int main(int argc, char const *argv[])
         printf("7. Search any element using Binary Search (Iterative method)...\n");
         printf("8. Search any element using Binary Search (Recursion method)...\n");
         printf("9. Get the second largest element...\n");
-
         printf("\nChoose the above option to perform any operation : ");
         scanf("%d", &choice);
 
         switch (choice)
         {
         case 1:
+            printf("Enter the size of an array : ");
+            scanf("%d", &size);
+            arr[size];
+
+            printf("Enter the elements : ");
+
+            for ( i = 0; i < size - 1; i++)
+            {
+                scanf("%d", &arr[i]);
+            }
 
             // Traversing the array
             printf("Array : ");
-
-            for (i = 0; i < size - 1; i++)
-            {
-                printf("%d,", arr[i]);
-            }
-            printf("%d\n", arr[i]);
+            traverse(arr, size);
 
             break;
 
         case 2:
             printf("Enter the element you want to add : ");
             scanf("%d", &add);
-            printf("Enter the position : ");
+            printf("Enter the position :  ");
             scanf("%d", &pos);
 
             for (i = size; i >= pos; i--)
@@ -159,11 +167,7 @@ int main(int argc, char const *argv[])
             arr[pos - 1] = add;
 
             printf("Array after adding an element : ");
-            for (i = 0; i < size - 1; i++)
-            {
-                printf("%d,", arr[i]);
-            }
-            printf("%d\n", arr[i]);
+            traverse(arr, size);
             break;
 
         case 3:
@@ -188,19 +192,14 @@ int main(int argc, char const *argv[])
 
                 len--;
                 printf("Array after deleting the element : ");
-
-                for (i = 0; i < len - 1; i++)
-                {
-                    printf("%d,", arr[i]);
-                }
-                printf("%d\n", arr[i]);
+                traverse(arr, len);
             }
             break;
 
         case 4:
 
             // Linear Search
-
+            count = 0;
             printf("Enter the element you want to search : ");
             scanf("%d", &target);
             for (i = 0; i < size; i++)
@@ -229,11 +228,7 @@ int main(int argc, char const *argv[])
             bubble_sort(arr, size);
 
             printf("Array after sorting : ");
-            for (i = 0; i < size - 1; i++)
-            {
-                printf("%d,", arr[i]);
-            }
-            printf("%d\n", arr[i]);
+            traverse(arr, size);
             break;
 
         case 6:
@@ -243,11 +238,7 @@ int main(int argc, char const *argv[])
             insertion_sort(arr, size);
 
             printf("Array after sorting : ");
-            for (i = 0; i < size - 1; i++)
-            {
-                printf("%d,", arr[i]);
-            }
-            printf("%d\n", arr[i]);
+            traverse(arr, size);
             break;
 
         case 7:
@@ -270,7 +261,7 @@ int main(int argc, char const *argv[])
 
         case 9:
 
-            // Find Second
+            // Find Second largest element
 
             largest = 0;
             Second = 0;
@@ -292,6 +283,7 @@ int main(int argc, char const *argv[])
             printf("Second largest element : %d\n", arr[Second]);
             break;
 
+      
         default:
             printf("Wrong choice ! (Choose from above) \n");
         }
