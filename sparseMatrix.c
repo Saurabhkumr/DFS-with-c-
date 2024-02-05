@@ -4,7 +4,8 @@ int main()
 {
     int i,j,k, rows , columns , count;
     int array[10][10];
-    int sparsematrix[10][10];
+    int rowMatrix[10][10];
+    int colMatrix[10][10];
 
     printf("Enter the number of rows: ");
     scanf("%d", &rows);
@@ -62,9 +63,9 @@ int main()
         printf("Not a sparse matrix....\n");
     }
 
-    // 3 triplet representation
-
-    sparsematrix[3][count];
+    // row representation
+    printf("Row representation....\n");
+    rowMatrix[3][count];
 
     // Making of new matrix
     k = 0;
@@ -72,9 +73,9 @@ int main()
         for (j = 0; j < columns ; j++){
             if (array[i][j] != 0)
             {
-                sparsematrix[0][k] = i;
-                sparsematrix[1][k] = j;
-                sparsematrix[2][k] = array[i][j];
+                rowMatrix[0][k] = i;
+                rowMatrix[1][k] = j;
+                rowMatrix[2][k] = array[i][j];
                 k++;
             }
         }
@@ -83,7 +84,36 @@ int main()
     for (i = 0; i < 3; i++)
     {
         for (j = 0; j < count; j++)
-            printf("%d ", sparsematrix[i][j]);
+            printf("%d ", rowMatrix[i][j]);
+
+        printf("\n");
+    }
+
+
+    // Column representation
+
+    printf("Column representation....\n");
+
+    colMatrix[count][3];
+
+    // Making of new matrix
+    k = 0;
+    for (i = 0; i < rows; i++){
+        for (j = 0; j < columns ; j++){
+            if (array[i][j] != 0)
+            {
+                colMatrix[k][0] = i;
+                colMatrix[k][1] = j;
+                colMatrix[k][2] = array[i][j];
+                k++;
+            }
+        }
+    }
+
+    for (i = 0; i < count; i++)
+    {
+        for (j = 0; j < 3; j++)
+            printf("%d ", colMatrix[i][j]);
 
         printf("\n");
     }
