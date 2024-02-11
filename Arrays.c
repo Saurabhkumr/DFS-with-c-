@@ -99,46 +99,47 @@ void traverse(int arr[], int size)
     printf("%d\n", arr[i]);
 }
 
-
 // Counting Sort
 
-    
-void countingSort(int arr[],int size){
+void countingSort(int arr[], int size)
+{
     int i;
-     int countarray[10];
-     int ans[10];
-     int max; 
-     max=arr[0];
-     printf("first");
-    for( i = 1 ; i<size ;i++){
-        if(arr[i]>max){
-            max=arr[i];
+    int countarray[10];
+    int ans[10];
+    int max;
+    max = arr[0];
+    printf("first");
+    for (i = 1; i < size; i++)
+    {
+        if (arr[i] > max)
+        {
+            max = arr[i];
         }
+    }
 
-    }
-   
     printf("counting sort");
-    for(i=0;i<max+1;i++ ){
-        countarray[i]=0;
+    for (i = 0; i < max + 1; i++)
+    {
+        countarray[i] = 0;
     }
-    for(i =0 ;i<size;i++){
+    for (i = 0; i < size; i++)
+    {
         countarray[arr[i]]++;
     }
-    for(i=1;i<max+1;i++){
-        countarray[i]=countarray[i]+countarray[i-1];
-
+    for (i = 1; i < max + 1; i++)
+    {
+        countarray[i] = countarray[i] + countarray[i - 1];
     }
     ans[size];
-    for(i=size-1;i>=0;i++){
-        ans[countarray[arr[i]]-1]=arr[i];
-
+    for (i = size - 1; i >= 0; i++)
+    {
+        ans[countarray[arr[i]] - 1] = arr[i];
     }
 
-   for(i=0;i<size;i++){
-    printf("%d ",ans[i]);
-   }
-
-
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", ans[i]);
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -183,7 +184,7 @@ int main(int argc, char const *argv[])
 
             printf("Enter the elements : ");
 
-            for ( i = 0; i < size - 1; i++)
+            for (i = 0; i < size - 1; i++)
             {
                 scanf("%d", &arr[i]);
             }
@@ -324,10 +325,9 @@ int main(int argc, char const *argv[])
             printf("Second largest element : %d\n", arr[Second]);
             break;
 
-case 10:
-countingSort(arr,size);
+        case 10:
+            countingSort(arr, size);
 
-      
         default:
             printf("Wrong choice ! (Choose from above) \n");
         }
