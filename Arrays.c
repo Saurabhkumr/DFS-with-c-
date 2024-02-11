@@ -99,48 +99,29 @@ void traverse(int arr[], int size)
     printf("%d\n", arr[i]);
 }
 
-// Counting Sort
+//Selection Sort 
 
-void countingSort(int arr[], int size)
-{
-    int i;
-    int countarray[10];
-    int ans[10];
-    int max;
-    max = arr[0];
-    printf("first");
-    for (i = 1; i < size; i++)
-    {
-        if (arr[i] > max)
-        {
-            max = arr[i];
-        }
+void selection_sort(int arr[],int start,int size){
+    int i , temp, min ;
+    if(start==size-1){
+        return;
     }
 
-    printf("counting sort");
-    for (i = 0; i < max + 1; i++)
-    {
-        countarray[i] = 0;
-    }
-    for (i = 0; i < size; i++)
-    {
-        countarray[arr[i]]++;
-    }
-    for (i = 1; i < max + 1; i++)
-    {
-        countarray[i] = countarray[i] + countarray[i - 1];
-    }
-    ans[size];
-    for (i = size - 1; i >= 0; i++)
-    {
-        ans[countarray[arr[i]] - 1] = arr[i];
+    min = start+1;
+    for( i = start+2 ; i<size ;i++){
+       if(arr[min]>arr[i]){
+        min=i;
+       }
     }
 
-    for (i = 0; i < size; i++)
-    {
-        printf("%d ", ans[i]);
-    }
+    temp = arr[min];
+    arr[min] = arr[start];
+    arr[start]=temp;
+    selection_sort(arr,start+1,size);
+
+    
 }
+
 
 int main(int argc, char const *argv[])
 {
@@ -171,7 +152,7 @@ int main(int argc, char const *argv[])
         printf("7. Search any element using Binary Search (Iterative method)...\n");
         printf("8. Search any element using Binary Search (Recursion method)...\n");
         printf("9. Get the second largest element...\n");
-        printf("10. counting sort...\n");
+        printf("10. Selection sort...\n");
         printf("\nChoose the above option to perform any operation : ");
         scanf("%d", &choice);
 
@@ -326,7 +307,10 @@ int main(int argc, char const *argv[])
             break;
 
         case 10:
-            countingSort(arr, size);
+            traverse(arr,size);
+            selection_sort(arr, 0,size);
+            traverse(arr,size);
+            break;
 
         default:
             printf("Wrong choice ! (Choose from above) \n");

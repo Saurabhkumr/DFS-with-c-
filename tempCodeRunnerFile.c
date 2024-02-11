@@ -1,27 +1,67 @@
+#include <stdio.h>
+void radix(int arr[], int size, int pos)
+{
+    int i;
+    int count[10];
+    int output[size];
 
-void multiplication(int arr1[][10] , int arr2[][10], int row1 , int col1 , int row2 ,int col2){
- 
-    int sum[10][10];
-    int i , j ,k ;
-        for (i = 0; i < row1; i++)
-        {
-            for (j = 0; j < col2; j++)
-            {
-                sum[i][j] = 0;
-                for (k = 0; k < row2; k++)
-                {
-                    sum[i][j] += arr1[i][k] * arr2[k][j];
-                }
-            }
-        }
-        printf("Resultant matrix : \n");
-        for (i = 0; i < row1; i++)
-        {
-            for (j = 0; j < col2; j++)
-            {
-                printf("%d ", sum[i][j]);
-            }
-            printf("\n");
-        }
+    for (i = 0; i < 10; i++)
+    {
+        count[i] = 0;
+    }
+    for (i = 0; i < size; i++)
+    {
+        count[(arr[i] / pos) % 10]++;
+    }
+    for (i = 1; i < 10; i++)
+    {
+        count[i] += count[i - 1];
+    }
+    for (i = size - 1; i >= 0; i--)
+    {
+        output[count[(arr[i] / pos) % 10] - 1] = arr[i];
+        count[(arr[i] / pos) % 10]--;
+    }
+    for (i = 0; i < size; i++)
+    {
+        arr[i] = output[i];
+    }
+}
 
+int main()
+{
+    int i, max;
+    int arr[10];
+    int size;
+    printf("enter the size : ");
+    scanf("%d", &size);
+
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    printf("array : ");
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    max = arr[0];
+    for (i = 0; i < size; i++)
+    {
+        if (max < arr[i])
+        {
+            max = arr[i];
+        }
+    }
+    for (i = 1; max / i > 0; i = i * 10)
+    {
+        radix(arr, size, i);
+    }
+    printf("\nsorted array : ");
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
 }
