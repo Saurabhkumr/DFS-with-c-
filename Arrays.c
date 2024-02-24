@@ -99,29 +99,30 @@ void traverse(int arr[], int size)
     printf("%d\n", arr[i]);
 }
 
-//Selection Sort 
+// Selection Sort
 
-void selection_sort(int arr[],int start,int size){
-    int i , temp, min ;
-    if(start==size-1){
+void selection_sort(int arr[], int start, int size)
+{
+    int i, temp, min;
+    if (start == size - 1)
+    {
         return;
     }
 
-    min = start+1;
-    for( i = start+2 ; i<size ;i++){
-       if(arr[min]>arr[i]){
-        min=i;
-       }
+    min = start + 1;
+    for (i = start + 2; i < size; i++)
+    {
+        if (arr[min] > arr[i])
+        {
+            min = i;
+        }
     }
 
     temp = arr[min];
     arr[min] = arr[start];
-    arr[start]=temp;
-    selection_sort(arr,start+1,size);
-
-    
+    arr[start] = temp;
+    selection_sort(arr, start + 1, size);
 }
-
 
 int main(int argc, char const *argv[])
 {
@@ -307,9 +308,9 @@ int main(int argc, char const *argv[])
             break;
 
         case 10:
-            traverse(arr,size);
-            selection_sort(arr, 0,size);
-            traverse(arr,size);
+            traverse(arr, size);
+            selection_sort(arr, 0, size);
+            traverse(arr, size);
             break;
 
         default:
