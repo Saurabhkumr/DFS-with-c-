@@ -131,6 +131,22 @@ void sort(struct node *start)
   }
 }
 
+void reverse(struct node **start)
+{
+  struct node *current = *start;
+  struct node *prev = NULL;
+  struct node *next = NULL;
+
+  while (current != NULL)
+  {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+  *start = prev;
+}
+
 int main()
 {
 
@@ -204,6 +220,10 @@ int main()
       break;
     case 8:
       sort(start);
+      display(start);
+      break;
+    case 9:
+      reverse(&start);
       display(start);
       break;
 
