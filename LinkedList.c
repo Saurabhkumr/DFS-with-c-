@@ -64,6 +64,21 @@ void insert_end(struct node **start)
   newnode->next = NULL;
 }
 
+// Insertion at specific position
+void insert_pos(struct node *start, int pos)
+{
+  struct node *temp = start;
+  struct node *newnode = (struct node *)malloc(sizeof(struct node));
+  for (int i = 0; i < pos - 2; i++)
+  {
+    temp = temp->next;
+  }
+  printf("Enter the element :");
+  scanf("%d", &newnode->value);
+  newnode->next = temp->next;
+  temp->next = newnode;
+}
+
 // Deletion from start
 void delete_start(struct node **start)
 {
@@ -80,6 +95,20 @@ void delete_end(struct node **start)
     temp = temp->next;
   }
   temp->next = NULL;
+}
+// Delete from specific position
+
+void delete_pos(struct node *start, int pos)
+{
+  struct node *temp = start;
+  for (int i = 0; i < pos - 2; i++)
+  {
+    temp = temp->next;
+  }
+
+  struct node *temp1 = temp->next;
+  temp->next = temp1->next;
+  free(temp1);
 }
 
 // Searching
@@ -131,6 +160,8 @@ void sort(struct node *start)
   }
 }
 
+// Reverse the linkedlist
+
 void reverse(struct node **start)
 {
   struct node *current = *start;
@@ -153,6 +184,7 @@ int main()
   struct node *newnode;
   struct node *start = NULL;
   int size;
+  int pos;
   int choice;
   char cont;
   struct node *temp;
@@ -184,11 +216,14 @@ int main()
   printf("2.Find the length of linkedlist....\n");
   printf("3.Insertion at Starting....\n");
   printf("4.Insertion at Ending....\n");
-  printf("5.Deletion at Starting....\n");
-  printf("6.Deletion at Ending....\n");
-  printf("7.Searching an element....\n");
-  printf("8.Sorting....\n");
-  printf("9.Reverse the linkedlist....\n\n");
+  printf("4.Insertion at Ending....\n");
+  printf("5.Insertion at Specific position....\n");
+  printf("6.Deletion from Starting....\n");
+  printf("7.Deletion from Ending....\n");
+  printf("8.Deletion from Specific position....\n");
+  printf("9.Searching an element....\n");
+  printf("10.Sorting....\n");
+  printf("11.Reverse the linkedlist....\n\n");
 
   do
   {
@@ -205,24 +240,40 @@ int main()
       break;
     case 3:
       insert_start(&start);
+      display(start);
       break;
     case 4:
       insert_end(&start);
+      display(start);
       break;
     case 5:
-      delete_start(&start);
+      printf("Enter the position : ");
+      scanf("%d", &pos);
+      insert_pos(start, pos);
+      display(start);
       break;
     case 6:
-      delete_end(&start);
+      delete_start(&start);
+      display(start);
       break;
     case 7:
-      search(start);
+      delete_end(&start);
+      display(start);
       break;
     case 8:
-      sort(start);
+      printf("Enter the position : ");
+      scanf("%d", &pos);
+      delete_pos(start, pos);
       display(start);
       break;
     case 9:
+      search(start);
+      break;
+    case 10:
+      sort(start);
+      display(start);
+      break;
+    case 11:
       reverse(&start);
       display(start);
       break;
