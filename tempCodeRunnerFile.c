@@ -1,3 +1,4 @@
-  scanf("%d", &newnode->value);
-  temp->next = newnode;
-  newnode->next = NULL;
+case 8:
+      delete_pos();
+      display();
+      break;

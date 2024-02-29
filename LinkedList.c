@@ -65,18 +65,28 @@ void insert_end(struct node **start)
 }
 
 // Insertion at specific position
-void insert_pos(struct node *start, int pos)
+void insert_pos(struct node **start, int pos)
 {
-  struct node *temp = start;
+  struct node *temp = *start;
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
-  for (int i = 0; i < pos - 2; i++)
+  if (pos == 1)
   {
-    temp = temp->next;
+    printf("Enter the element :");
+    scanf("%d", &newnode->value);
+    newnode->next = temp;
+    *start = newnode;
   }
-  printf("Enter the element :");
-  scanf("%d", &newnode->value);
-  newnode->next = temp->next;
-  temp->next = newnode;
+  else
+  {
+    for (int i = 0; i < pos - 2; i++)
+    {
+      temp = temp->next;
+    }
+    printf("Enter the element :");
+    scanf("%d", &newnode->value);
+    newnode->next = temp->next;
+    temp->next = newnode;
+  }
 }
 
 // Deletion from start
@@ -96,19 +106,29 @@ void delete_end(struct node **start)
   }
   temp->next = NULL;
 }
+
 // Delete from specific position
 
-void delete_pos(struct node *start, int pos)
+void delete_pos(struct node **start, int pos)
 {
-  struct node *temp = start;
-  for (int i = 0; i < pos - 2; i++)
+  struct node *temp = *start;
+  if (pos == 1)
   {
-    temp = temp->next;
+    *start = temp->next;
+    free(temp);
   }
 
-  struct node *temp1 = temp->next;
-  temp->next = temp1->next;
-  free(temp1);
+  else
+  {
+    for (int i = 0; i < pos - 2; i++)
+    {
+      temp = temp->next;
+    }
+
+    struct node *temp1 = temp->next;
+    temp->next = temp1->next;
+    free(temp1);
+  }
 }
 
 // Searching
@@ -216,7 +236,6 @@ int main()
   printf("2.Find the length of linkedlist....\n");
   printf("3.Insertion at Starting....\n");
   printf("4.Insertion at Ending....\n");
-  printf("4.Insertion at Ending....\n");
   printf("5.Insertion at Specific position....\n");
   printf("6.Deletion from Starting....\n");
   printf("7.Deletion from Ending....\n");
@@ -249,7 +268,7 @@ int main()
     case 5:
       printf("Enter the position : ");
       scanf("%d", &pos);
-      insert_pos(start, pos);
+      insert_pos(&start, pos);
       display(start);
       break;
     case 6:
@@ -263,7 +282,7 @@ int main()
     case 8:
       printf("Enter the position : ");
       scanf("%d", &pos);
-      delete_pos(start, pos);
+      delete_pos(&start, pos);
       display(start);
       break;
     case 9:
