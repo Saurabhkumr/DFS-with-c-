@@ -1,4 +1,4 @@
-case 8:
-      delete_pos();
+1:
+      reverse();
       display();
       break;
