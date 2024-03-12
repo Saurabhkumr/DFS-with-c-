@@ -4,217 +4,199 @@
 struct node
 {
   struct node *next;
+  struct node *prev;
   int data;
 };
+struct node *start = NULL;
+struct node *temp;
+struct node *tail;
+struct node *temp1;
 
-struct node *temp = NULL;
-struct node *temp1 = NULL;
-
-struct node *tail = NULL;
-int pos, i;
-
-// display
 void display()
 {
-  temp = tail->next;
-  do
+  temp = start;
+  while (temp->next != start)
   {
     printf("%d ", temp->data);
     temp = temp->next;
-  } while (temp != tail->next);
-}
-
-void count()
-{
-  temp = tail->next;
-  if (temp == NULL)
-  {
-    printf("size is 0");
-    return;
   }
-
-  int count = 1;
-  while (temp->next != tail->next)
+  printf("%d", temp->data);
+}
+void sizeofDoubly()
+{
+  int count = 0;
+  temp = start;
+  while (temp != NULL)
   {
     count++;
     temp = temp->next;
   }
-  printf("Size of Singly circular linkedlist is %d", count);
+  printf("Size of Doubly Linkedlist : %d", count);
 }
 
 void insert_start()
 {
-
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
-  printf("Enter the element you want to enter : ");
   scanf("%d", &newnode->data);
-  newnode->next = tail->next;
+  newnode->next = start;
+  start->prev = newnode;
+  newnode->prev = tail;
   tail->next = newnode;
+  start = newnode;
 }
 void insert_end()
 {
-
+  temp = start;
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
-  printf("Enter the element you want to enter : ");
   scanf("%d", &newnode->data);
-  newnode->next = tail->next;
   tail->next = newnode;
+  newnode->next = start;
+  newnode->prev = tail;
+  start->prev = newnode;
   tail = newnode;
 }
 void insert_pos()
 {
-  i = 1;
-
-  printf("Enter the position you want to insert the element : ");
+  int pos;
+  printf("enter the position you want to insert : ");
   scanf("%d", &pos);
-  if (pos == 1)
-  {
-    struct node *newnode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element you want to enter : ");
-    scanf("%d", &newnode->data);
-    newnode->next = tail->next;
-    tail->next = newnode;
-    return;
-  }
-  temp = tail->next;
-  while (i < pos - 1)
+  temp = start;
+  for (int i = 0; i < pos - 2; i++)
   {
     temp = temp->next;
-    i++;
   }
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
-  printf("Enter the element you want to enter : ");
   scanf("%d", &newnode->data);
   newnode->next = temp->next;
+  temp->next->prev = newnode;
   temp->next = newnode;
+  newnode->prev = temp;
 }
 void delete_start()
 {
-  temp = tail->next;
-  tail->next = temp->next;
+  temp = start;
+  start = temp->next;
+  start->prev = tail;
+  tail->next = start;
   free(temp);
 }
 void delete_end()
 {
-  temp = tail->next;
-  while (temp->next->next != tail->next)
-  {
-    temp = temp->next;
-  }
-  temp->next = tail->next;
-  free(tail);
-  tail = temp;
+  temp = tail;
+  tail = tail->prev;
+  tail->next = start;
+  start->prev = tail;
+  free(temp);
 }
 void delete_pos()
 {
-  struct node *temp1;
-  printf("Enter the position of element you want to delete : ");
+  int pos;
+  printf("enter the position you want to delete : ");
   scanf("%d", &pos);
-  i = 1;
-  temp = tail->next;
-  while (i < pos - 1)
+  temp = start;
+  for (int i = 0; i < pos - 1; i++)
   {
     temp = temp->next;
-    i++;
   }
+  temp->next->prev = temp->prev;
+  temp->prev->next = temp->next;
   temp1 = temp->next;
-  temp->next = temp1->next;
-  free(temp1);
+  free(temp);
 }
 void search()
 {
   int target;
-  printf("Enter the element you want to search : ");
-  scanf("%d", &target);
-  int count = 0;
+  int count = 1;
   int flag = 0;
-  temp = tail->next;
+  temp = start;
+  printf("enter the target you want search : ");
+  scanf("%d", &target);
   do
   {
-    if (temp->data == target)
     {
-      printf("Element is at index : %d", count);
-      flag = 1;
+      if (temp->data == target)
+      {
+        printf("target element is at position : %d", count);
+        flag = 1;
+      }
+      count++;
+      temp = temp->next;
     }
-    count++;
-    temp = temp->next;
-  } while (temp != tail->next);
+  } while (temp != start);
   if (flag == 0)
   {
-    printf("Not Found !");
+    printf("Not Found");
   }
 }
-
-// Sorting
 
 void sort()
 {
   int key;
-  temp = tail->next;
+  temp = start;
   do
   {
-    temp1 = temp->next;
-    while (temp1 != tail->next)
     {
-      if (temp->data > temp1->data)
+      temp1 = temp->next;
+      do
       {
-        key = temp->data;
-        temp->data = temp1->data;
-        temp1->data = key;
-      }
-      temp1 = temp1->next;
+        {
+          if (temp->data > temp1->data)
+          {
+            key = temp->data;
+            temp->data = temp1->data;
+            temp1->data = key;
+          }
+          temp1 = temp1->next;
+        }
+      } while (temp1 != start);
+      temp = temp->next;
     }
-    temp = temp->next;
-  } while (temp != tail->next);
-}
-void reverse()
-{
-  struct node *current = tail->next;
-  struct node *prev = tail;
-  struct node *next = NULL;
-  tail = tail->next;
-
-  do
-  {
-    next = current->next;
-    current->next = prev;
-    prev = current;
-    current = next;
-  } while (current != tail->next);
-  current->next = prev;
+  } while (temp->next != start);
 }
 
 int main()
 {
-  int size, cont;
-  char ch;
-  int choice;
+  int size, ch;
+  char cont;
   struct node *newnode;
-  printf("Enter the size : ");
+  printf("Enter the size of Doubly Linkedlist : ");
   scanf("%d", &size);
   for (int i = 0; i < size; i++)
   {
     newnode = (struct node *)malloc(sizeof(struct node));
     printf("Enter the element : ");
     scanf("%d", &newnode->data);
-    if (tail == NULL)
+    newnode->prev = NULL;
+    newnode->next = NULL;
+    if (start == NULL)
     {
+      start = newnode;
       tail = newnode;
-      newnode->next = tail;
+      newnode->next = start;
+      newnode->prev = start;
     }
     else
     {
-      newnode->next = tail->next;
+      // newnode->next = tail->next;
+      // newnode->prev = tail;
+      // tail->next->prev = newnode;
+      // tail->next = newnode;
+      // tail = newnode;
       tail->next = newnode;
+      newnode->prev = tail;
+      newnode->next = start;
       tail = newnode;
+      start->prev = tail;
     }
   }
-
   do
   {
     printf("\n*********************************\n");
-    printf("1.Display the Doubly Linkedlist....\n");
-    printf("2.Find the length of Doubly linkedlist....\n");
+    printf("1.Display the Doubly Circular Linkedlist....\n");
+    printf("2.Find the length of Doubly Circular linkedlist....\n");
     printf("3.Insertion at Starting....\n");
     printf("4.Insertion at Ending....\n");
     printf("5.Insertion at Specific position....\n");
@@ -223,7 +205,7 @@ int main()
     printf("8.Deletion from Specific position....\n");
     printf("9.Searching an element....\n");
     printf("10.Sorting....\n");
-    printf("11.Reverse the Doubly linkedlist....\n\n");
+    printf("11.Reverse the Doubly Circular linkedlist....\n\n");
 
     printf("Enter your choice : ");
     scanf("%d", &ch);
@@ -236,9 +218,8 @@ int main()
       break;
 
     case 2:
-      count();
+      sizeofDoubly();
       break;
-
     case 3:
       insert_start();
       display();

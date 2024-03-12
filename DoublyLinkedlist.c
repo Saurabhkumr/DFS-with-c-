@@ -35,7 +35,7 @@ void sizeofDoubly()
 void insert_start()
 {
   temp = start;
-  printf("Enter the targetent: ");
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
   scanf("%d", &newnode->data);
   newnode->next = temp;
@@ -49,7 +49,7 @@ void insert_end()
   {
     temp = temp->next;
   }
-  printf("Enter the targetent: ");
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
   scanf("%d", &newnode->data);
   temp->next = newnode;
@@ -66,7 +66,7 @@ void insert_pos()
   {
     temp = temp->next;
   }
-  printf("Enter the targetent: ");
+  printf("Enter the element : ");
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
   scanf("%d", &newnode->data);
   newnode->next = temp->next;
