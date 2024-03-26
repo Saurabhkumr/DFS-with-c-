@@ -53,8 +53,8 @@ int main()
 
     printf("1. Push in stack\n");
     printf("2. Pop from stack\n");
-    printf("2. Peek of stack\n");
-    printf("2. Traverse stack\n");
+    printf("3. Peek of stack\n");
+    printf("4. Traverse stack\n");
     printf("Enter your choice : ");
     scanf("%d", &n);
     switch (n)
