@@ -4,6 +4,7 @@
 void push();
 void pop();
 void traverse();
+void peek();
 
 struct node
 {
