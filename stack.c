@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int stack[10];
 int top = -1;
