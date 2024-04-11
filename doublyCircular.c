@@ -26,10 +26,13 @@ void sizeofDoubly()
 {
   int count = 0;
   temp = start;
-  while (temp != NULL)
+  if (start != NULL)
   {
-    count++;
-    temp = temp->next;
+    do
+    {
+      count++;
+      temp = temp->next;
+    } while (temp != start);
   }
   printf("Size of Doubly Linkedlist : %d", count);
 }
@@ -155,6 +158,20 @@ void sort()
       temp = temp->next;
     }
   } while (temp->next != start);
+}
+void reverse()
+{
+  struct node *curr = start;
+  temp = NULL;
+  do
+  {
+    temp = curr->next;
+    curr->next = curr->prev;
+    curr->prev = temp;
+    curr = temp;
+  } while (curr != start);
+  tail = start;
+  start = start->next;
 }
 
 int main()

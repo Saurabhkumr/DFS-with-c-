@@ -2,7 +2,7 @@
 
 int main()
 {
-    int i,j,k, rows , columns , count;
+    int i, j, k, rows, columns, count;
     int array[10][10];
     int rowMatrix[10][10];
     int colMatrix[10][10];
@@ -12,8 +12,6 @@ int main()
 
     printf("Enter the number of columns: ");
     scanf("%d", &columns);
-
- 
 
     array[rows][columns];
 
@@ -53,7 +51,6 @@ int main()
         }
     }
 
-
     if (count <= ((rows * columns) / 2))
     {
         printf("Sparse Matrix....\n");
@@ -69,8 +66,10 @@ int main()
 
     // Making of new matrix
     k = 0;
-    for (i = 0; i < rows; i++){
-        for (j = 0; j < columns ; j++){
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < columns; j++)
+        {
             if (array[i][j] != 0)
             {
                 rowMatrix[0][k] = i;
@@ -89,7 +88,6 @@ int main()
         printf("\n");
     }
 
-
     // Column representation
 
     printf("Column representation....\n");
@@ -98,8 +96,10 @@ int main()
 
     // Making of new matrix
     k = 0;
-    for (i = 0; i < rows; i++){
-        for (j = 0; j < columns ; j++){
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < columns; j++)
+        {
             if (array[i][j] != 0)
             {
                 colMatrix[k][0] = i;
@@ -117,7 +117,6 @@ int main()
 
         printf("\n");
     }
-
 
     return 0;
 }

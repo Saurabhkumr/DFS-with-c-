@@ -39,6 +39,7 @@ void insert_start()
   struct node *newnode = (struct node *)malloc(sizeof(struct node));
   scanf("%d", &newnode->data);
   newnode->next = temp;
+  temp->prev = newnode;
   newnode->prev = NULL;
   start = newnode;
 }

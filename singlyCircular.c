@@ -180,8 +180,7 @@ void reverse()
     current->next = prev;
     prev = current;
     current = next;
-  } while (current != tail->next);
-  current->next = prev;
+  } while (current != tail);
 }
 
 int main()

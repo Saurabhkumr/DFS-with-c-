@@ -74,7 +74,7 @@ void dequeue()
 void display()
 {
 
-  printf("\nElemnt in queue : ");
+  printf("\nElement in queue :");
   for (int i = 0; i < count; i++)
   {
     printf(" %d", s1[i]);

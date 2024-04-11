@@ -166,7 +166,7 @@ int main(int argc, char const *argv[])
 
             printf("Enter the elements : ");
 
-            for (i = 0; i < size - 1; i++)
+            for (i = 0; i < size; i++)
             {
                 scanf("%d", &arr[i]);
             }
@@ -270,7 +270,6 @@ int main(int argc, char const *argv[])
 
             printf("Enter the element you want to search : ");
             scanf("%d", &target);
-            bubble_sort(arr, size);
             printf("Entered element is at index : %d\n", binary_search(arr, target, size));
             break;
 
@@ -279,7 +278,6 @@ int main(int argc, char const *argv[])
 
             printf("Enter the element you want to search : ");
             scanf("%d", &target);
-            bubble_sort(arr, size);
             printf("Entered element is at index : %d\n", binary_search_recursion(arr, target, 0, size));
             break;
 

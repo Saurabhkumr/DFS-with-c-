@@ -12,7 +12,6 @@ void push(char ch)
   {
     top++;
     stack[top] = ch;
-    // printf(" %c", stack[top]);
   }
 }
 
@@ -30,10 +29,11 @@ void pop()
 int main()
 {
   int flag = 0;
-  char arr[] = "({[}])";
+  char arr[10];
+  
   for (int i = 0; i < 6; i++)
   {
-    // printf(" %c", arr[i]);
+
     if (arr[i] == '(' || arr[i] == '{' || arr[i] == '[')
     {
       push(arr[i]);
